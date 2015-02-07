@@ -11,7 +11,7 @@ using namespace std;
 #ifndef M_LEXER
 #define M_LEXER
 
-// ´Ê·¨·ÖÎöÆ÷
+// è¯æ³•åˆ†æå™¨
 class mLexer {
 private:
     vector<mToken> tokenStream;
