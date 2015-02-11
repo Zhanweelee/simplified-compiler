@@ -9,7 +9,7 @@ mLexer* mLexerInit() {
     for (int i = 0; i < mSTATE_NUM; i ++)
 		states[i].stateID = i;
 
-	// ״̬READY
+	// 状态READY
     states[READY].push(IS_DIGIT, &states[INTEGER])
         .push(IS_LETTER, &states[IDENTIFIER])
         .push('c', &states[C_REATE]).push('C', &states[C_REATE])
@@ -38,21 +38,21 @@ mLexer* mLexerInit() {
 		.push('\n', &states[ENTER])
 		.push(IS_WHITESPACE, &states[END]);
 	
-	// ״̬READY->(INTEGER)->FINISH
+	// 状态READY->(INTEGER)->FINISH
 	states[INTEGER].push(IS_DIGIT, &states[INTEGER])
 		.push(IS_LETTER, &states[FINISH])
 		.push(IS_OPERATOR, &states[FINISH])
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->(IDENTIFIER)->FINISH
+	// 状态READY->(IDENTIFIER)->FINISH
 	states[IDENTIFIER].push(IS_LETTER, &states[IDENTIFIER])
 		.push(IS_DIGIT, &states[IDENTIFIER])
 		.push(IS_OPERATOR, &states[FINISH])
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->C_REATE->...->CREATE->FINISH
+	// 状态READY->C_REATE->...->CREATE->FINISH
 	states[C_REATE].push('r', &states[CR_EATE]).push('R', &states[CR_EATE]);
 	states[CR_EATE].push('e', &states[CRE_ATE]).push('E', &states[CRE_ATE]);
 	states[CRE_ATE].push('a', &states[CREA_TE]).push('A', &states[CREA_TE]);
@@ -66,7 +66,7 @@ mLexer* mLexerInit() {
 
 
 
-	// ״̬READY->T_ABLE->...->TABLE->FINISH
+	// 状态READY->T_ABLE->...->TABLE->FINISH
 	states[T_ABLE].push('a', &states[TA_BLE]).push('A', &states[TA_BLE]);
 	states[TA_BLE].push('b', &states[TAB_LE]).push('B', &states[TAB_LE]);
 	states[TAB_LE].push('l', &states[TABL_E]).push('L', &states[TABL_E]);
@@ -77,7 +77,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 	
-	// ״̬READY->I_NT->...->INT->FINISH
+	// 状态READY->I_NT->...->INT->FINISH
 	states[I_NT].push('n', &states[IN_T]).push('N', &states[IN_T]);
 	states[IN_T].push('t', &states[INT]).push('T', &states[INT]);
 	states[INT].push(IS_LETTER, &states[END])
@@ -86,7 +86,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->P_RIMARY->...->PRIMARY->FINISH
+	// 状态READY->P_RIMARY->...->PRIMARY->FINISH
 	states[P_RIMARY].push('r', &states[PR_IMARY]).push('R', &states[PR_IMARY]);
 	states[PR_IMARY].push('i', &states[PRI_MARY]).push('I', &states[PRI_MARY]);
 	states[PRI_MARY].push('m', &states[PRIM_ARY]).push('M', &states[PRIM_ARY]);
@@ -99,7 +99,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->K_EY->...->KEY->FINISH
+	// 状态READY->K_EY->...->KEY->FINISH
 	states[K_EY].push('e', &states[KE_Y]).push('E', &states[KE_Y]);
 	states[KE_Y].push('y', &states[KEY]).push('Y', &states[KEY]);
 	states[KEY].push(IS_LETTER, &states[END])
@@ -108,7 +108,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->D_EFAULT->...->DEFAULT->FINISH
+	// 状态READY->D_EFAULT->...->DEFAULT->FINISH
 	states[D_EFAULT].push('e', &states[DE_FAULT]).push('E', &states[DE_FAULT]);
 	states[DE_FAULT].push('f', &states[DEF_AULT]).push('F', &states[DEF_AULT]);
 	states[DEF_AULT].push('a', &states[DEFA_ULT]).push('A', &states[DEFA_ULT]);
@@ -121,7 +121,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->D_ELETE->...->DELETE->FINISH
+	// 状态READY->D_ELETE->...->DELETE->FINISH
 	states[D_ELETE].push('e', &states[DE_LETE]).push('E', &states[DE_LETE]);
 	states[DE_LETE].push('l', &states[DEL_ETE]).push('L', &states[DEL_ETE]);
 	states[DEL_ETE].push('e', &states[DELE_TE]).push('E', &states[DELE_TE]);
@@ -133,7 +133,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->I_NSERT->...->INSERT->FINISH
+	// 状态READY->I_NSERT->...->INSERT->FINISH
 	states[I_NSERT].push('n', &states[IN_SERT]).push('N', &states[IN_SERT]);
 	states[IN_SERT].push('s', &states[INS_ERT]).push('S', &states[INS_ERT]);
 	states[INS_ERT].push('e', &states[INSE_RT]).push('E', &states[INSE_RT]);
@@ -145,7 +145,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->I_NTO->...->INTO->FINISH
+	// 状态READY->I_NTO->...->INTO->FINISH
 	states[I_NTO].push('n', &states[IN_TO]).push('N', &states[IN_TO]);
 	states[IN_TO].push('t', &states[INT_O]).push('T', &states[INT_O]);
 	states[INT_O].push('o', &states[INTO]).push('O', &states[INTO]);
@@ -155,7 +155,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->V_ALUES->...->VALUES->FINISH
+	// 状态READY->V_ALUES->...->VALUES->FINISH
 	states[V_ALUES].push('a', &states[VA_LUES]).push('A', &states[VA_LUES]);
 	states[VA_LUES].push('l', &states[VAL_UES]).push('L', &states[VAL_UES]);
 	states[VAL_UES].push('u', &states[VALU_ES]).push('U', &states[VALU_ES]);
@@ -167,7 +167,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->F_ROM->...->FROM->FINISH
+	// 状态READY->F_ROM->...->FROM->FINISH
 	states[F_ROM].push('r', &states[FR_OM]).push('R', &states[FR_OM]);
 	states[FR_OM].push('o', &states[FRO_M]).push('O', &states[FRO_M]);
 	states[FRO_M].push('m', &states[FROM]).push('M', &states[FROM]);
@@ -177,7 +177,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->W_HERE->...->WHERE->FINISH
+	// 状态READY->W_HERE->...->WHERE->FINISH
 	states[W_HERE].push('h', &states[WH_ERE]).push('H', &states[WH_ERE]);
 	states[WH_ERE].push('e', &states[WHE_RE]).push('E', &states[WHE_RE]);
 	states[WHE_RE].push('r', &states[WHER_E]).push('R', &states[WHER_E]);
@@ -188,7 +188,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	// ״̬READY->S_ELECT->...->SELECT->FINISH
+	// 状态READY->S_ELECT->...->SELECT->FINISH
 	states[S_ELECT].push('e', &states[SE_LECT]).push('E', &states[SE_LECT]);
 	states[SE_LECT].push('l', &states[SEL_ECT]).push('L', &states[SEL_ECT]);
 	states[SEL_ECT].push('e', &states[SELE_CT]).push('E', &states[SELE_CT]);
@@ -200,10 +200,10 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 	
-	// ״̬READY->(OPERATOR)->FINISH
-	/* ״̬READY->LESS->FINISH
-	 * ״̬READY->LESS->LESS_EQUAL->FINISH
-	 * ״̬READY->LESS->NOT_EQUAL->FINISH
+	// 状态READY->(OPERATOR)->FINISH
+	/* 状态READY->LESS->FINISH
+	 * 状态READY->LESS->LESS_EQUAL->FINISH
+	 * 状态READY->LESS->NOT_EQUAL->FINISH
 	 */
 	states[LESS].push('=', &states[LESS_EQUAL])
 		.push('>', &states[NOT_EQUAL])
@@ -225,8 +225,8 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	/* ״̬READY->GREATER->FINISH
-	 * ״̬READY->GREATER->GREATER_EQUAL->FINISH
+	/* 状态READY->GREATER->FINISH
+	 * 状态READY->GREATER->GREATER_EQUAL->FINISH
 	 */
 	states[GREATER].push('=', &states[GREATER_EQUAL])
 		.push(IS_LETTER, &states[FINISH])
@@ -241,8 +241,8 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	/* ״̬READY->ASSIGN->FINISH
-	 * ״̬READY->ASSIGN->EQUAL->FINISH
+	/* 状态READY->ASSIGN->FINISH
+	 * 状态READY->ASSIGN->EQUAL->FINISH
 	 */
 	states[ASSIGN].push('=', &states[EQUAL])
 		.push(IS_LETTER, &states[FINISH])
@@ -257,8 +257,8 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	/* ״̬READY->BIT_AND->FINISH
-	 * ״̬READY->BIT_AND->LOG_AND->FINISH
+	/* 状态READY->BIT_AND->FINISH
+	 * 状态READY->BIT_AND->LOG_AND->FINISH
 	 */
 	states[BIT_AND].push('&', &states[LOG_AND]);
 	states[LOG_AND].push(IS_LETTER, &states[FINISH])
@@ -267,8 +267,8 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 	
-	/* ״̬READY->BIT_OR->FINISH
-	 * ״̬READY->BIT_OR->LOG_OR->FINISH
+	/* 状态READY->BIT_OR->FINISH
+	 * 状态READY->BIT_OR->LOG_OR->FINISH
 	 */
 	states[BIT_OR].push('|', &states[LOG_OR]);
 	states[LOG_OR].push(IS_LETTER, &states[FINISH])
@@ -277,7 +277,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	/* ״̬READY->COMMA->FINISH
+	/* 状态READY->COMMA->FINISH
 	 */
 	states[COMMA].push(IS_LETTER, &states[FINISH])
 		.push(IS_DIGIT, &states[FINISH])
@@ -285,7 +285,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 	
-	/* ״̬READY->COMMA->FINISH
+	/* 状态READY->COMMA->FINISH
 	 */
 	states[SEMICOLON].push(IS_LETTER, &states[FINISH])
 		.push(IS_DIGIT, &states[FINISH])
@@ -293,7 +293,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
     
-    /* ״̬LEFT_PAREN��RIGHT_PAREN��ת��(�����ţ�������)
+    /* 状态LEFT_PARENºÍRIGHT_PARENµÄ×ªÒÆ(×óÀ¨ºÅ£¬ÓÒÀ¨ºÅ)
      */
     states[LEFT_PAREM].push(IS_LETTER, &states[FINISH])
 		.push(IS_DIGIT, &states[FINISH])
@@ -308,7 +308,7 @@ mLexer* mLexerInit() {
 		.push(IS_DELIMITER, &states[FINISH]);
 
     
-    /* ״̬REVERSE��ת��('!')
+    /* 状态REVERSEµÄ×ªÒÆ('!')
      */
     states[REVERSE].push(IS_LETTER, &states[FINISH])
 		.push(IS_DIGIT, &states[FINISH])
@@ -316,7 +316,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-    /* ״̬�������ת��(�Ӽ��˳�)
+    /* 状态ÔËËã·ûµÄ×ªÒÆ(¼Ó¼õ³Ë³ý)
      */
     states[ADDITION].push(IS_LETTER, &states[FINISH])
 		.push(IS_DIGIT, &states[FINISH])
@@ -348,7 +348,7 @@ mLexer* mLexerInit() {
 		.push(IS_WHITESPACE, &states[FINISH])
 		.push(IS_DELIMITER, &states[FINISH]);
 
-	/* ��ֹ״̬��Token���Ͷ�Ӧ */
+	/* 状态和token之间对应关系 */
 	/* Integer, Identifier,
 	 * Create, Table, Primary, Default, Insert, Into, Values, Delete, From, Where, Select,
 	 * Equal, Assign, Less, Greater, Less Equal, Greater Equal, Not Equal
@@ -398,7 +398,7 @@ mLexer* mLexerInit() {
 	stateIDToTokenType[ENTER] = EN;
 	stateIDToTokenType[REVERSE] = NOT;
 
-    /* ��������
+    /* ²âÊÔÊý¾Ý
      * SELECT sid, age FROM Student WHERE age > 15 && age < 18;
      * select selecta, wherea FROm table where selecta > 0 && wher < 10;
      * select selecta, wherea FROm table where selecta > 0 && wher < 10
